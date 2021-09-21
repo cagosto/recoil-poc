@@ -3,10 +3,15 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { RecoilRoot } from 'recoil';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <React.Suspense fallback={<div>Hi</div>}>
+      <RecoilRoot>
+        <App />
+      </RecoilRoot>
+    </React.Suspense>
   </React.StrictMode>,
   document.getElementById('root')
 );
