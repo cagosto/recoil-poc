@@ -29,9 +29,13 @@ function App() {
       <CharacterCount />
       <br />
       <br />
-      {users.map((user) => (
-        <div key={user.id}>{user.name}</div>
-      ))}
+      {users.length > 0 && (
+        <div data-testid="test-users-holder">
+          {users.map((user) => (
+            <div key={user.id}>{user.name}</div>
+          ))}
+        </div>
+      )}
       <button onClick={addUser}>Add</button>
       <button onClick={removeUser}>Remove</button>
     </div>

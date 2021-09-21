@@ -1,8 +1,11 @@
-import { render, screen } from '@testing-library/react';
 import App from './App';
+import { render, screen } from './test/testing-library';
 
-test('renders learn react link', () => {
-  render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+describe('App flow', () => {
+  it('should render user', async () => {
+    render(<App />);
+    const usersHolder = await screen.findByTestId('test-users-holder');
+
+    expect(usersHolder).toBeInTheDocument();
+  });
 });
