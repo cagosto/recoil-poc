@@ -2,7 +2,7 @@ import { textState } from '../../atoms/textState.atom';
 import { usersState } from '../../atoms/usersState.atom';
 import RecoilObserver from '../../test/helpers';
 import { render, screen, waitFor } from '../../test/testing-library';
-import TextInput from './textInput.component';
+import TextInput from './TextInput.component';
 import userEvent from '@testing-library/user-event';
 import { snapshot_UNSTABLE } from 'recoil';
 

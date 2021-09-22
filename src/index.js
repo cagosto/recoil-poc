@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 import { RecoilRoot } from 'recoil';
-import App from './components/app/App';
+import App from './components/App/App';
 
 ReactDOM.render(
   <React.StrictMode>

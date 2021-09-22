@@ -1,8 +1,8 @@
 import userEvent from '@testing-library/user-event';
-import App from './App';
 import { usersState } from '../../atoms/usersState.atom';
 import RecoilObserver from '../../test/helpers';
 import { render, screen, waitFor } from '../../test/testing-library';
+import Landing from './landing';
 
 const mockChange = jest.fn();
 
@@ -10,7 +10,7 @@ describe('App flow', () => {
   it('should render user', async () => {
     render(
       <>
-        <RecoilObserver node={usersState} onChange={mockChange} /> <App />
+        <RecoilObserver node={usersState} onChange={mockChange} /> <Landing />
       </>
     );
 
@@ -25,7 +25,7 @@ describe('App flow', () => {
   it('should add user', async () => {
     render(
       <>
-        <RecoilObserver node={usersState} onChange={mockChange} /> <App />
+        <RecoilObserver node={usersState} onChange={mockChange} /> <Landing />
       </>
     );
 
@@ -53,7 +53,7 @@ describe('App flow', () => {
   it('should remove user', async () => {
     render(
       <>
-        <RecoilObserver node={usersState} onChange={mockChange} /> <App />
+        <RecoilObserver node={usersState} onChange={mockChange} /> <Landing />
       </>
     );
 
