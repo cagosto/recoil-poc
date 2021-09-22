@@ -4,6 +4,7 @@ import { useSetRecoilState } from 'recoil';
 import { usersState } from '../../atoms/usersState.atom';
 import TextInput from '../TextInput/TextInput.component';
 import CharacterCount from '../CharacterCount/CharacterCount.component';
+import { Link } from 'react-router-dom';
 
 export default function Landing() {
   const users = useFetchUser();
@@ -24,7 +25,7 @@ export default function Landing() {
         <div data-testid="test-users-holder">
           {users.map((user) => (
             <div key={user.id}>
-              {user.name}{' '}
+              <Link to={`/user/${user.id}`}> {user.name}</Link>
               <button onClick={removeUser.bind(null, user.id)}>Remove</button>
             </div>
           ))}
