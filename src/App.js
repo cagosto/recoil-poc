@@ -18,7 +18,7 @@ function App() {
     ]);
   };
   const removeUser = () => {
-    const copyUser = [...users].filter((user) => user.id !== 3);
+    const copyUser = [...users].filter((user) => user.id !== 2);
 
     updateUserState(copyUser);
   };
