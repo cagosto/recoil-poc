@@ -11,10 +11,15 @@ export default function UserInfo() {
   useFetchUser();
 
   return (
-    <div>
-      {user.map((userInfo) => (
-        <div key={userInfo.id}>{userInfo.name}</div>
-      ))}
+    <div data-testid="test-user-info">
+      {user.length > 0 && (
+        <p data-testid="test-user-info-data">
+          Hi:
+          {user.map((userInfo) => (
+            <span key={userInfo.id}>{userInfo.name}</span>
+          ))}
+        </p>
+      )}
     </div>
   );
 }
