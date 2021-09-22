@@ -17,15 +17,12 @@ describe('render user info', () => {
 
     expect(userHolder).toBeInTheDocument();
 
-    await waitFor(
-      () => {
-        const userHolder = screen.getByTestId('test-user-info-data');
-        const items = userHolder.children;
+    await waitFor(() => {
+      const userHolder = screen.getByTestId('test-user-info-data');
+      const items = userHolder.children;
 
-        expect(userHolder).toBeInTheDocument();
-        expect(items[0]).toHaveTextContent('test one');
-      },
-      { timeout: 5000 }
-    );
+      expect(userHolder).toBeInTheDocument();
+      expect(items[0]).toHaveTextContent('test one');
+    });
   });
 });
