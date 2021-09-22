@@ -1,8 +1,8 @@
 import userEvent from '@testing-library/user-event';
 import App from './App';
-import { usersState } from './atoms/usersState.atom';
-import RecoilObserver from './test/helpers';
-import { render, screen, waitFor } from './test/testing-library';
+import { usersState } from '../../atoms/usersState.atom';
+import RecoilObserver from '../../test/helpers';
+import { render, screen, waitFor } from '../../test/testing-library';
 
 const mockChange = jest.fn();
 

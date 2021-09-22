@@ -1,9 +1,9 @@
-import CharacterCount from './Components/characterCount.component';
-import TextInput from './Components/textInput.component';
 import React from 'react';
-import useFetchUser from './hooks/useFetchUser.hook';
+import useFetchUser from '../../hooks/useFetchUser.hook';
 import { useSetRecoilState } from 'recoil';
-import { usersState } from './atoms/usersState.atom';
+import { usersState } from '../../atoms/usersState.atom';
+import TextInput from '../textInput/textInput.component';
+import CharacterCount from '../characterCount/characterCount.component';
 
 function App() {
   const users = useFetchUser();

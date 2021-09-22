@@ -1,7 +1,7 @@
 import { useRecoilState, useSetRecoilState } from 'recoil';
-import { textState } from '../atoms/textState.atom';
-import { usersState } from '../atoms/usersState.atom';
-import { addUser } from '../utils';
+import { textState } from '../../atoms/textState.atom';
+import { usersState } from '../../atoms/usersState.atom';
+import { addUser } from '../../utils/index';
 
 function TextInput() {
   const [text, setText] = useRecoilState(textState);
@@ -28,8 +28,14 @@ function TextInput() {
   return (
     <div>
       <div>
-        <form onSubmit={handleSubmit}>
-          <input type="text" value={text} onChange={onChange} />
+        <form onSubmit={handleSubmit} data-testid="test-form-add-user">
+          <input
+            type="text"
+            value={text}
+            onChange={onChange}
+            placeholder="Full Name"
+            name="add user"
+          />
           <button type="submit">Submit</button>
         </form>
       </div>

@@ -17,12 +17,10 @@ export const handlers = [
   }),
   rest.post('https://jsonplaceholder.typicode.com/users', (req, res, ctx) => {
     return res(
-      ctx.json([
-        {
-          name: 'test three',
-          id: 3,
-        },
-      ])
+      ctx.json({
+        name: 'test three',
+        id: 3,
+      })
     );
   }),
 ];
