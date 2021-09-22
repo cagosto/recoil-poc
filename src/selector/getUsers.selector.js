@@ -1,8 +1,10 @@
-import { selectorFamily } from 'recoil';
+import { selector } from 'recoil';
+import { usersState } from '../atoms/usersState.atom';
 
-export const getUsers = selectorFamily({
+export const getUsers = selector({
   key: 'getUsers', // unique ID (with respect to other atoms/selectors)
-  get: (users) => async () => {
+  get: async ({ get }) => {
+    const users = get(usersState);
     if (users.length <= 0) {
       const users = await fetch('https://jsonplaceholder.typicode.com/users');
 

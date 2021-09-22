@@ -5,7 +5,7 @@ import { getUsers } from '../selector/getUsers.selector';
 
 export default function useFetchUser() {
   const [users, setUsers] = useRecoilState(usersState);
-  const fetchedUsers = useRecoilValue(getUsers(users));
+  const fetchedUsers = useRecoilValue(getUsers);
 
   useEffect(() => {
     if (fetchedUsers) {
