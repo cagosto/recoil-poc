@@ -29,17 +29,24 @@ describe('App flow', () => {
       </>
     );
 
-    const addBtn = screen.getByRole('button', { name: 'Add' });
-
-    userEvent.click(addBtn);
-
-    expect(mockChange).toHaveBeenCalledTimes(3);
+    const fullName = screen.getByPlaceholderText('Full Name');
+    const formSubmit = screen.getByRole('button', { name: 'Submit' });
+    const name = 'Carlos agosto';
+    userEvent.type(fullName, name);
+    userEvent.click(formSubmit);
 
     await waitFor(() => {
       const usersHolder = screen.getByTestId('test-users-holder');
       const item = usersHolder.children;
 
       expect(item).toHaveLength(3);
+      expect(mockChange).toHaveBeenCalledTimes(3);
+    });
+
+    await waitFor(() => {
+      const count = screen.getByTestId('test-character-count');
+
+      expect(count).toHaveTextContent(name.length);
     });
   });
 
@@ -50,9 +57,9 @@ describe('App flow', () => {
       </>
     );
 
-    const removeBtn = screen.getByRole('button', { name: 'Remove' });
+    const removeBtn = screen.getAllByRole('button', { name: 'Remove' });
 
-    userEvent.click(removeBtn);
+    userEvent.click(removeBtn[0]);
 
     expect(mockChange).toHaveBeenCalledTimes(3);
 
