@@ -8,7 +8,7 @@ function TextInput() {
   const updateUser = useSetRecoilState(usersState);
   const handleSubmit = (e) => {
     e.preventDefault();
-    fetch('https://jsonplaceholder.typicode.com/users', {
+    fetch(`${process.env.REACT_APP_DOMAIN}/users`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

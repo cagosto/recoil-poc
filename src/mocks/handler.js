@@ -1,7 +1,7 @@
 import { rest } from 'msw';
 
 export const handlers = [
-  rest.get('https://jsonplaceholder.typicode.com/users', (req, res, ctx) => {
+  rest.get(`${process.env.REACT_APP_DOMAIN}/users`, (req, res, ctx) => {
     return res(
       ctx.json([
         {
@@ -15,7 +15,7 @@ export const handlers = [
       ])
     );
   }),
-  rest.post('https://jsonplaceholder.typicode.com/users', (req, res, ctx) => {
+  rest.post(`${process.env.REACT_APP_DOMAIN}/users`, (req, res, ctx) => {
     return res(
       ctx.json({
         name: 'test three',

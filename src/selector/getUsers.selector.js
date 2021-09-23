@@ -6,7 +6,7 @@ export const getUsers = selector({
   get: async ({ get }) => {
     const users = get(usersState);
     if (users.length <= 0) {
-      const users = await fetch('https://jsonplaceholder.typicode.com/users');
+      const users = await fetch(`${process.env.REACT_APP_DOMAIN}/users`);
 
       return users.json();
     }
