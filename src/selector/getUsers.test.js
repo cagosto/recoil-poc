@@ -1,6 +1,7 @@
 import { waitFor } from '@testing-library/react';
 import { snapshot_UNSTABLE } from 'recoil';
 import { getUsers } from './getUsers.selector';
+import { mockUsers } from '../mocks/handler';
 
 describe('get users', () => {
   it('should fetch users', async () => {
@@ -9,16 +10,7 @@ describe('get users', () => {
 
       expect(
         initialSnapshot.getLoadable(getUsers).valueOrThrow()
-      ).toStrictEqual([
-        {
-          name: 'test one',
-          id: 1,
-        },
-        {
-          name: 'test two',
-          id: 2,
-        },
-      ]);
+      ).toStrictEqual(mockUsers);
     });
   });
 });
