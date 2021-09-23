@@ -4,15 +4,15 @@ import './index.css';
 import reportWebVitals from './reportWebVitals';
 import { RecoilRoot } from 'recoil';
 import App from './components/App/App';
-
+import { ErrorBoundary } from 'react-error-boundary';
 ReactDOM.render(
-  <React.StrictMode>
-    <React.Suspense fallback={<div>Hi</div>}>
-      <RecoilRoot>
+  <RecoilRoot>
+    <ErrorBoundary>
+      <React.Suspense fallback={<div>Hi</div>}>
         <App />
-      </RecoilRoot>
-    </React.Suspense>
-  </React.StrictMode>,
+      </React.Suspense>
+    </ErrorBoundary>
+  </RecoilRoot>,
   document.getElementById('root')
 );
 

@@ -6,9 +6,9 @@ import { Router, Route } from 'react-router-dom';
 
 const AllTheProviders = ({ children }) => {
   return (
-    <React.Suspense fallback="<div>hi</div>">
-      <RecoilRoot>{children}</RecoilRoot>
-    </React.Suspense>
+    <RecoilRoot>
+      <React.Suspense fallback="<div>hi</div>">{children}</React.Suspense>
+    </RecoilRoot>
   );
 };
 

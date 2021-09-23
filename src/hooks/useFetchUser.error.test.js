@@ -1,14 +1,18 @@
 import { renderRecoilHook } from 'react-recoil-hooks-testing-library';
 import useFetchUser from './useFetchUser.hook';
-import { mockUsers } from '../mocks/handler';
+import { server } from '../mocks/server';
 
 describe('fetch user hook', () => {
-  it('should fetch users', async () => {
+  it.only('should throw error message', async () => {
+    server.resetHandlers(
+      `${process.env.REACT_APP_DOMAIN}/users`,
+      (req, res, ctx) => res(ctx.status(404))
+    );
     const { result, waitForNextUpdate } = renderRecoilHook(useFetchUser);
 
     expect(result.all).toStrictEqual([]);
 
     await waitForNextUpdate();
-    expect(result.current).toStrictEqual([mockUsers, null]);
+    expect(result.error).toBeDefined();
   });
 });

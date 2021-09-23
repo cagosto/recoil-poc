@@ -1,17 +1,20 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { usersState } from '../atoms/usersState.atom';
 import { getUsers } from '../selector/getUsers.selector';
 
 export default function useFetchUser() {
+  const [errorMessage, setErrorMessage] = useState(null);
   const [users, setUsers] = useRecoilState(usersState);
   const fetchedUsers = useRecoilValue(getUsers);
-
   useEffect(() => {
-    if (fetchedUsers) {
+    if (!fetchedUsers.message) {
       setUsers(fetchedUsers);
+    } else {
+      setErrorMessage(fetchedUsers.message);
+      throw new Error(fetchedUsers.message);
     }
-  }, [fetchedUsers, setUsers]);
+  }, [fetchedUsers, setUsers, errorMessage]);
 
-  return users;
+  return [users, errorMessage];
 }
