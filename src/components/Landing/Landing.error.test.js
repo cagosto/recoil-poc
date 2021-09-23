@@ -3,6 +3,9 @@ import Landing from './landing';
 import { server } from '../../mocks/server';
 import { rest } from 'msw';
 
+/**
+ * Error go in its own test file cause I cant figure out how to empty state after each test.
+ */
 describe('App flow', () => {
   it('should display error', async () => {
     server.resetHandlers(
