@@ -10,7 +10,7 @@ export default function UserInfo() {
   const userEmail = useRecoilValue(getUserById({ id, data: 'email' }));
 
   useFetchUser();
-  console.log(userEmail);
+
   return (
     <div data-testid="test-user-info">
       {user.length > 0 && (
