@@ -5,6 +5,8 @@ import { render, screen, waitFor } from '../../test/testing-library';
 import TextInput from './TextInput.component';
 import userEvent from '@testing-library/user-event';
 import { snapshot_UNSTABLE } from 'recoil';
+import { mockComponent } from 'react-dom/test-utils';
+import { mockPostUser } from '../../mocks/handler';
 
 const mockChange = jest.fn();
 const mockUserChange = jest.fn();
@@ -38,12 +40,7 @@ describe('add user input', () => {
 
     await waitFor(() => {
       expect(mockUserChange).toHaveBeenCalledTimes(2);
-      expect(mockUserChange).toHaveBeenCalledWith([
-        {
-          name: 'test three',
-          id: 3,
-        },
-      ]);
+      expect(mockUserChange).toHaveBeenCalledWith([mockPostUser]);
     });
   });
 });

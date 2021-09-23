@@ -1,5 +1,6 @@
 import { snapshot_UNSTABLE } from 'recoil';
 import { usersState } from '../atoms/usersState.atom';
+import { mockUsers } from '../mocks/handler';
 import { getUserById } from './getUserById.selector';
 
 describe('get user by id', () => {
@@ -10,23 +11,11 @@ describe('get user by id', () => {
     ).toStrictEqual([]);
 
     const nextState = snapshot_UNSTABLE(({ set }) =>
-      set(usersState, [
-        {
-          id: 1,
-          name: 'test 1',
-        },
-        {
-          id: 2,
-          name: 'test 2',
-        },
-      ])
+      set(usersState, mockUsers)
     );
 
-    expect(nextState.getLoadable(getUserById(2)).valueOrThrow()).toStrictEqual([
-      {
-        id: 2,
-        name: 'test 2',
-      },
-    ]);
+    expect(nextState.getLoadable(getUserById(2)).valueOrThrow()).toStrictEqual(
+      mockUsers.slice(1)
+    );
   });
 });
