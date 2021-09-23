@@ -1,5 +1,6 @@
 import React from 'react';
 import { useParams } from 'react-router';
+import { Link } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
 import useFetchUser from '../../hooks/useFetchUser.hook';
 import { getUserById } from '../../selector/getUserById.selector';
@@ -23,6 +24,7 @@ export default function UserInfo() {
           Email: <span>{userEmail}</span>
         </p>
       )}
+      <Link to="/">Back</Link>
     </div>
   );
 }

@@ -4,7 +4,7 @@ import { server } from '../mocks/server';
 import { rest } from 'msw';
 
 describe('fetch user hook', () => {
-  it.only('should throw error message', async () => {
+  it('should throw error message', async () => {
     server.resetHandlers(
       rest.get(`${process.env.REACT_APP_DOMAIN}/users`, (req, res, ctx) =>
         res(ctx.status(500))

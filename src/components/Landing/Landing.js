@@ -29,7 +29,7 @@ export default function Landing() {
           <h2>Users List</h2>
           <hr />
           {users.map((user) => (
-            <div key={user.id}>
+            <div key={user.id} data-testid="test-user-loader">
               <Link to={`/user/${user.id}`}> {user.name}</Link>
               <button onClick={removeUser.bind(null, user.id)}>Remove</button>
             </div>

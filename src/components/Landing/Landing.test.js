@@ -15,7 +15,7 @@ describe('App flow', () => {
     );
 
     const usersHolder = await screen.findByTestId('test-users-holder');
-    const item = usersHolder.children;
+    const item = await screen.findAllByTestId('test-user-loader');
 
     expect(mockChange).toHaveBeenCalledTimes(2);
     expect(usersHolder).toBeInTheDocument();
@@ -36,8 +36,7 @@ describe('App flow', () => {
     userEvent.click(formSubmit);
 
     await waitFor(() => {
-      const usersHolder = screen.getByTestId('test-users-holder');
-      const item = usersHolder.children;
+      const item = screen.getAllByTestId('test-user-loader');
 
       expect(item).toHaveLength(3);
       expect(mockChange).toHaveBeenCalledTimes(3);
@@ -56,16 +55,17 @@ describe('App flow', () => {
         <RecoilObserver node={usersState} onChange={mockChange} /> <Landing />
       </>
     );
-
+    const item = await screen.findAllByTestId('test-user-loader');
     const removeBtn = screen.getAllByRole('button', { name: 'Remove' });
+
+    expect(item).toHaveLength(2);
 
     userEvent.click(removeBtn[0]);
 
     expect(mockChange).toHaveBeenCalledTimes(3);
 
     await waitFor(() => {
-      const usersHolder = screen.getByTestId('test-users-holder');
-      const item = usersHolder.children;
+      const item = screen.getAllByTestId('test-user-loader');
 
       expect(item).toHaveLength(1);
     });
