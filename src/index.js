@@ -4,14 +4,12 @@ import './index.css';
 import reportWebVitals from './reportWebVitals';
 import { RecoilRoot } from 'recoil';
 import App from './components/App/App';
-import { ErrorBoundary } from 'react-error-boundary';
+
 ReactDOM.render(
   <RecoilRoot>
-    <ErrorBoundary>
-      <React.Suspense fallback={<div>Hi</div>}>
-        <App />
-      </React.Suspense>
-    </ErrorBoundary>
+    <React.Suspense fallback={<div>Hi</div>}>
+      <App />
+    </React.Suspense>
   </RecoilRoot>,
   document.getElementById('root')
 );

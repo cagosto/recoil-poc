@@ -7,12 +7,12 @@ export default function useFetchUser() {
   const [errorMessage, setErrorMessage] = useState(null);
   const [users, setUsers] = useRecoilState(usersState);
   const fetchedUsers = useRecoilValue(getUsers);
+
   useEffect(() => {
     if (!fetchedUsers.message) {
       setUsers(fetchedUsers);
     } else {
       setErrorMessage(fetchedUsers.message);
-      throw new Error(fetchedUsers.message);
     }
   }, [fetchedUsers, setUsers, errorMessage]);
 

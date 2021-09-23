@@ -4,9 +4,18 @@ import { usersState } from '../atoms/usersState.atom';
 export const getUserById = selectorFamily({
   key: 'getUserById',
   get:
-    (id) =>
+    ({ id, data }) =>
     ({ get }) => {
+      console.log(id, data);
       const user = get(usersState);
-      return user.filter((user) => user.id === Number(id));
+      const userInfo = user.filter((user) => user.id === Number(id));
+      switch (data) {
+        case 'name':
+          return userInfo[0] ? userInfo[0].name : null;
+        case 'email':
+          return userInfo[0] ? userInfo[0].email : null;
+        default:
+          return userInfo;
+      }
     },
 });

@@ -1,25 +1,25 @@
-import { renderWithRouts, screen } from '../../test/testing-library';
+import { renderWithRouts, screen, waitFor } from '../../test/testing-library';
 import Landing from './landing';
 import { server } from '../../mocks/server';
-import { waitForAll } from 'recoil';
+import { rest } from 'msw';
 
 describe('App flow', () => {
   it('should display error', async () => {
     server.resetHandlers(
-      `${process.env.REACT_APP_DOMAIN}/users`,
-      (req, res, ctx) => res(ctx.status(404))
+      rest.get(`${process.env.REACT_APP_DOMAIN}/users`, (req, res, ctx) =>
+        res(ctx.status(500))
+      )
     );
 
-    renderWithRouts(
-      <>
-        <Landing />
-      </>
+    renderWithRouts(<Landing />);
+    const landingPage = await screen.findByTestId('test-users-landing');
+
+    expect(landingPage).toBeInTheDocument();
+
+    const errorMessage = await waitFor(() =>
+      screen.getByTestId('test-error-message')
     );
 
-    await waitForAll(() => {
-      const landingPage = screen.getAllByTestId('test-users-landing');
-
-      expect(landingPage).toBeInTheDocument();
-    });
+    expect(errorMessage).toBeInTheDocument();
   });
 });

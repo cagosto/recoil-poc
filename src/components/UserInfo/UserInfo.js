@@ -6,10 +6,11 @@ import { getUserById } from '../../selector/getUserById.selector';
 
 export default function UserInfo() {
   const { id } = useParams();
-  const user = useRecoilValue(getUserById(id));
+  const user = useRecoilValue(getUserById({ id }));
+  const userEmail = useRecoilValue(getUserById({ id, data: 'email' }));
 
   useFetchUser();
-
+  console.log(userEmail);
   return (
     <div data-testid="test-user-info">
       {user.length > 0 && (
@@ -18,6 +19,8 @@ export default function UserInfo() {
           {user.map((userInfo) => (
             <span key={userInfo.id}>{userInfo.name}</span>
           ))}
+          <br />
+          Email: <span>{userEmail}</span>
         </p>
       )}
     </div>

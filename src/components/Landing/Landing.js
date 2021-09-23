@@ -17,6 +17,8 @@ export default function Landing() {
 
   return (
     <div data-testid={'test-users-landing'}>
+      <h2>Add User</h2>
+      <hr />
       <TextInput />
       <CharacterCount />
       <br />
@@ -24,6 +26,8 @@ export default function Landing() {
       {errorMessage && <p data-testid="test-error-message">{errorMessage}</p>}
       {users.length > 0 && (
         <div data-testid="test-users-holder">
+          <h2>Users List</h2>
+          <hr />
           {users.map((user) => (
             <div key={user.id}>
               <Link to={`/user/${user.id}`}> {user.name}</Link>
