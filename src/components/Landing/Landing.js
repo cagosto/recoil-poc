@@ -10,7 +10,7 @@ export default function Landing() {
   const [users, errorMessage] = useFetchUser();
   const updateUserState = useSetRecoilState(usersState);
   const removeUser = (id) => {
-    const copyUser = [...users].filter((user) => user.id !== id);
+    const copyUser = users.filter((user) => user.id !== id);
 
     updateUserState(copyUser);
   };

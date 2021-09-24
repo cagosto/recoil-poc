@@ -11,7 +11,7 @@ export default function useFetchUser() {
   useEffect(() => {
     if (!fetchedUsers.message) {
       setUsers(fetchedUsers);
-    } else {
+    } else if (fetchedUsers.message) {
       setErrorMessage(fetchedUsers.message);
     }
   }, [fetchedUsers, setUsers, errorMessage]);
