@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { useRecoilState, useSetRecoilState } from 'recoil';
 import { textState } from '../../atoms/textState.atom';
 import { usersState } from '../../atoms/usersState.atom';
@@ -8,14 +9,11 @@ function TextInput() {
   const updateUser = useSetRecoilState(usersState);
   const handleSubmit = (e) => {
     e.preventDefault();
-    fetch(`${process.env.REACT_APP_DOMAIN}/users`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ name: text }),
-    })
-      .then((response) => response.json())
+    axios
+      .post(`${process.env.REACT_APP_DOMAIN}/users`, {
+        name: text,
+      })
+      .then((response) => response.data)
       .then((data) => {
         updateUser((currState) => addUser(currState, data));
       });
