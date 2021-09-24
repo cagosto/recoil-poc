@@ -8,7 +8,7 @@ export const getUserById = selectorFamily({
     ({ get }) => {
       const user = get(usersState);
       const userInfo = user.filter((user) => user.id === Number(id));
-
+      // Pulling different state slices from one selector
       switch (data) {
         case 'name':
           return userInfo[0] ? userInfo[0].name : null;
