@@ -7,18 +7,16 @@ import Landing from './landing';
 const mockChange = jest.fn();
 
 describe('App flow', () => {
-  it('should render user', async () => {
+  it('should render users', async () => {
     renderWithRouts(
       <>
         <RecoilObserver node={usersState} onChange={mockChange} /> <Landing />
       </>
     );
 
-    const usersHolder = await screen.findByTestId('test-users-holder');
     const item = await screen.findAllByTestId('test-user-loader');
 
     expect(mockChange).toHaveBeenCalledTimes(2);
-    expect(usersHolder).toBeInTheDocument();
     expect(item).toHaveLength(2);
   });
 
@@ -32,6 +30,7 @@ describe('App flow', () => {
     const fullName = screen.getByPlaceholderText('Full Name');
     const formSubmit = screen.getByRole('button', { name: 'Submit' });
     const name = 'Carlos agosto';
+
     userEvent.type(fullName, name);
     userEvent.click(formSubmit);
 

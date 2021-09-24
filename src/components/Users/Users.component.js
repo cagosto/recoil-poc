@@ -1,22 +1,15 @@
-import React, { useEffect } from 'react';
+import React from 'react';
+import { useSetRecoilState } from 'recoil';
 import { usersState } from '../../atoms/usersState.atom';
-import { getUsers } from '../../selector/getUsers.selector';
+import useGetUsersList from '../../hooks/useGetUsersList.hook';
 import User from '../User/index.component';
-const { useRecoilValueLoadable, useRecoilState } = require('recoil');
 
 export default function Users() {
-  const userNameLoadable = useRecoilValueLoadable(getUsers);
-  const [userList, setUserList] = useRecoilState(usersState);
-
+  const [userNameLoadable, userList] = useGetUsersList();
+  const setUserList = useSetRecoilState(usersState);
   const removeUser = (id) => {
     setUserList((prev) => prev.filter((u) => u.id !== id));
   };
-
-  useEffect(() => {
-    if (userNameLoadable.state === 'hasValue') {
-      setUserList(userNameLoadable.contents);
-    }
-  }, [setUserList, userNameLoadable]);
 
   switch (userNameLoadable.state) {
     case 'hasValue':
