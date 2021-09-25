@@ -35,6 +35,6 @@ describe('user component', () => {
 
     userEvent.click(btn);
 
-    expect(removeUser).toHaveBeenCalled();
+    expect(removeUser).toHaveBeenCalledTimes(1);
   });
 });
