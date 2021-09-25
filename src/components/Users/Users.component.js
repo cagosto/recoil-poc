@@ -8,16 +8,18 @@ export default function Users() {
   const [userNameLoadable, userList] = useGetUsersList();
   const setUserList = useSetRecoilState(usersState);
   const removeUser = (id) => {
-    setUserList((prev) => prev.filter((u) => u.id !== id));
+    const update = userList.filter((u) => u.id !== id);
+
+    setUserList(update);
   };
 
   switch (userNameLoadable.state) {
     case 'hasValue':
       return (
-        <div>
+        <div data-testid="test-users-list-holder">
           <h3>Users List</h3>
-          {userList.map((user) => (
-            <User key={user.id} data={user} removeUser={removeUser} />
+          {userList.map((user, i) => (
+            <User key={i} data={user} removeUser={removeUser} />
           ))}
         </div>
       );
