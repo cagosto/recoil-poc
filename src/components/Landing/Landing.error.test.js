@@ -3,14 +3,16 @@ import Landing from './landing';
 import axios from 'axios';
 
 jest.mock('axios');
-
 /**
  * Error go in its own test file cause I cant figure out how to empty state after each test.
  */
 describe('App flow', () => {
   it('should display error', async () => {
+    jest.spyOn(console, 'error').mockImplementation(() => {});
     axios.get.mockRejectedValueOnce();
+
     renderWithRouts(<Landing />);
+
     const landingPage = await screen.findByTestId('test-users-landing');
 
     expect(landingPage).toBeInTheDocument();
